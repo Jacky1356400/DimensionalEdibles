@@ -18,35 +18,35 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(this);
-        if (Loader.isModLoaded("theoneprobe")) {
-            TOPCompat.register();
-        }
-        if (Loader.isModLoaded("waila")) {
-            WailaCompat.register();
-        }
-    }
+	public void preInit(FMLPreInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(this);
+		if (Loader.isModLoaded("theoneprobe")) {
+			TOPCompat.register();
+		}
+		if (Loader.isModLoaded("waila")) {
+			WailaCompat.register();
+		}
+	}
 
-    @SubscribeEvent
-    public void onItemRegistry(RegistryEvent.Register<Item> event) {
-        ModItems.init(event);
-    }
+	@SubscribeEvent
+	public void onItemRegistry(RegistryEvent.Register<Item> event) {
+		ModItems.init(event);
+	}
 
-    @SubscribeEvent
-    public void onBlockRegistry(RegistryEvent.Register<Block> event) {
-        ModBlocks.init(event);
-    }
+	@SubscribeEvent
+	public void onBlockRegistry(RegistryEvent.Register<Block> event) {
+		ModBlocks.init(event);
+	}
 
-    @SubscribeEvent
-    public void onRecipeRegistry(RegistryEvent.Register<IRecipe> event) {
-        ModRecipes.init(event);
-    }
+	@SubscribeEvent
+	public void onRecipeRegistry(RegistryEvent.Register<IRecipe> event) {
+		ModRecipes.init(event);
+	}
 
-    public void init(FMLInitializationEvent event) {
-    }
+	public void init(FMLInitializationEvent event) {
+	}
 
-    public void postInit(FMLPostInitializationEvent event) {
-    }
+	public void postInit(FMLPostInitializationEvent event) {
+	}
 
 }

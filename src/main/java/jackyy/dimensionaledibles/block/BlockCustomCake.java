@@ -25,81 +25,80 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCustomCake extends BlockCakeBase implements ITileEntityProvider {
-    public BlockCustomCake() {
-	super();
-	setRegistryName(DimensionalEdibles.MODID + ":custom_cake");
-	setTranslationKey(DimensionalEdibles.MODID + ".custom_cake");
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-	int meta = getMetaFromState(world.getBlockState(pos)) - 1;
-
-	if (player.capabilities.isCreativeMode || meta < 0) {
-	    meta = 0;
+	public BlockCustomCake() {
+		super();
+		setRegistryName(DimensionalEdibles.MODID + ":custom_cake");
+		setTranslationKey(DimensionalEdibles.MODID + ".custom_cake");
 	}
 
-	int dimension = 0;
-	TileEntity ent = world.getTileEntity(pos);
-	if (ent != null && ent instanceof TileEntityCustomCake) {
-	    dimension = ((TileEntityCustomCake) ent).getDimensionID();
-	}
-	if (world.provider.getDimension() != dimension) {
-	    if (!world.isRemote) {
-		teleportPlayer(world, player, dimension);
-	    }
-	}
-	return true;
-    }
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		int meta = getMetaFromState(world.getBlockState(pos)) - 1;
 
-    private void teleportPlayer(World world, EntityPlayer player, int dimension) {
-
-	EntityPlayerMP playerMP = (EntityPlayerMP) player;
-	BlockPos coords = TeleporterHandler.getDimensionPosition(playerMP, dimension, player.getPosition());
-	TeleporterHandler.updateDimensionPosition(playerMP, world.provider.getDimension(), player.getPosition());
-	TeleporterHandler.teleport(playerMP, dimension, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
-    }
-
-    @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-	return getStateFromMeta(0);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-	if (ModConfig.general.customCake) {
-	    ItemStack stack;
-	    for (String s : ModConfig.tweaks.customEdible.dimensions) {
-		try {
-		    String[] parts = s.split(",");
-		    if (parts.length < 2) {
-			DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid input line! Format needs to be: <dimID>, <cakeName>");
-			continue;
-		    }
-		    int dimension = Integer.parseInt(parts[0].trim());
-		    if (DimensionManager.isDimensionRegistered(dimension)) {
-			stack = new ItemStack(this);
-			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt == null) {
-			    nbt = new NBTTagCompound();
-			    stack.setTagCompound(nbt);
-			}
-			nbt.setInteger("dimID", dimension);
-			nbt.setString("cakeName", parts[1].trim());
-			list.add(stack);
-		    } else {
-			DimensionalEdibles.logger.log(Level.ERROR, parts[0] + " is not a valid dimension id! (Needs to be a number)");
-		    }
-		} catch (NumberFormatException e) {
-		    DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid line input! The dimension id needs to be a number!");
+		if (player.capabilities.isCreativeMode || meta < 0) {
+			meta = 0;
 		}
-	    }
-	}
-    }
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-	return new TileEntityCustomCake();
-    }
+		int dimension = 0;
+		TileEntity ent = world.getTileEntity(pos);
+		if (ent != null && ent instanceof TileEntityCustomCake) {
+			dimension = ((TileEntityCustomCake) ent).getDimensionID();
+		}
+		if (world.provider.getDimension() != dimension) {
+			if (!world.isRemote) {
+			teleportPlayer(world, player, dimension);
+			}
+		}
+		return true;
+	}
+
+	private void teleportPlayer(World world, EntityPlayer player, int dimension) {
+		EntityPlayerMP playerMP = (EntityPlayerMP) player;
+		BlockPos coords = TeleporterHandler.getDimensionPosition(playerMP, dimension, player.getPosition());
+		TeleporterHandler.updateDimensionPosition(playerMP, world.provider.getDimension(), player.getPosition());
+		TeleporterHandler.teleport(playerMP, dimension, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
+	}
+
+	@Override
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return getStateFromMeta(0);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if (ModConfig.custom.enableCake) {
+			ItemStack stack;
+			for (String s : ModConfig.custom.dimensions) {
+			try {
+				String[] parts = s.split(",");
+				if (parts.length < 2) {
+				DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid input line! Format needs to be: <dimID>, <cakeName>");
+				continue;
+				}
+				int dimension = Integer.parseInt(parts[0].trim());
+				if (DimensionManager.isDimensionRegistered(dimension)) {
+				stack = new ItemStack(this);
+				NBTTagCompound nbt = stack.getTagCompound();
+				if (nbt == null) {
+					nbt = new NBTTagCompound();
+					stack.setTagCompound(nbt);
+				}
+				nbt.setInteger("dimID", dimension);
+				nbt.setString("cakeName", parts[1].trim());
+				list.add(stack);
+				} else {
+				DimensionalEdibles.logger.log(Level.ERROR, parts[0] + " is not a valid dimension id! (Needs to be a number)");
+				}
+			} catch (NumberFormatException e) {
+				DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid line input! The dimension id needs to be a number!");
+			}
+			}
+		}
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileEntityCustomCake();
+	}
 }

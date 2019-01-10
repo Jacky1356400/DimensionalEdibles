@@ -1,0 +1,20 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dimensionaledibles:twilight_cake/twilight_cake_full"
+	},
+	"variants": {
+		"bites": {
+			0: { "model": "dimensionaledibles:twilight_cake/twilight_cake_full" },
+			1: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice1" },
+			2: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice2" },
+			3: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice3" },
+			4: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice4" },
+			5: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice5" },
+			6: { "model": "dimensionaledibles:twilight_cake/twilight_cake_slice6" }
+		},
+		"inventory": {
+			"model": "dimensionaledibles:twilight_cake"
+		}
+	}
+}

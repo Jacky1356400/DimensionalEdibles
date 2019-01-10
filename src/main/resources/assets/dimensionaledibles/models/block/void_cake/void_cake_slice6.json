@@ -1,0 +1,10 @@
+{
+	"parent": "block/cake_slice6",
+	"textures": {
+        "particle": "dimensionaledibles:blocks/void_cake/void_cake_2",
+        "bottom": "dimensionaledibles:blocks/void_cake/void_cake_0",
+        "top": "dimensionaledibles:blocks/void_cake/void_cake_1",
+        "side": "dimensionaledibles:blocks/void_cake/void_cake_2",
+        "inside": "dimensionaledibles:blocks/void_cake/void_cake_3"
+    }
+}

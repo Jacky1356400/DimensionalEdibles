@@ -7,5 +7,5 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public interface IWailaInfoProvider {
-    List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config);
+	List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config);
 }

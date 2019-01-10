@@ -18,44 +18,45 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemNetherApple extends ItemFood {
+	public ModConfig.DimensionConfig config = ModConfig.nether;
 
-    public ItemNetherApple() {
-	super(4, 0.3F, false);
-	setAlwaysEdible();
-	setRegistryName(DimensionalEdibles.MODID + ":nether_apple");
-	setTranslationKey(DimensionalEdibles.MODID + ".nether_apple");
-	setCreativeTab(DimensionalEdibles.TAB);
-    }
-
-    @Override
-    public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-	if (world.provider.getDimension() != -1) {
-	    if (!world.isRemote) {
-		EntityPlayerMP playerMP = (EntityPlayerMP) player;
-		BlockPos coords;
-		if (ModConfig.tweaks.netherApple.useCustomCoords) {
-		    coords = new BlockPos(ModConfig.tweaks.netherApple.customCoords.x, ModConfig.tweaks.netherApple.customCoords.y, ModConfig.tweaks.netherApple.customCoords.z);
-		} else {
-		    coords = TeleporterHandler.getDimensionPosition(playerMP, -1, player.getPosition());
-		}
-		TeleporterHandler.updateDimensionPosition(playerMP, world.provider.getDimension(), player.getPosition());
-		TeleporterHandler.teleport(playerMP, -1, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
-		player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 200, false, false));
-	    }
+	public ItemNetherApple() {
+		super(4, 0.3F, false);
+		setAlwaysEdible();
+		setRegistryName(DimensionalEdibles.MODID + ":nether_apple");
+		setTranslationKey(DimensionalEdibles.MODID + ".nether_apple");
+		setCreativeTab(DimensionalEdibles.TAB);
 	}
-    }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-	if (isInCreativeTab(tab))
-	    if (ModConfig.general.netherApple)
-		list.add(new ItemStack(this));
-    }
+	@Override
+	public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
+		if (world.provider.getDimension() != config.dimID) {
+			if (!world.isRemote) {
+				EntityPlayerMP playerMP = (EntityPlayerMP) player;
+				BlockPos coords;
+				if (config.useCustomCoords) {
+					coords = new BlockPos(config.customCoords.x, config.customCoords.y, config.customCoords.z);
+				} else {
+					coords = TeleporterHandler.getDimensionPosition(playerMP, config.dimID, player.getPosition());
+				}
+				TeleporterHandler.updateDimensionPosition(playerMP, world.provider.getDimension(), player.getPosition());
+				TeleporterHandler.teleport(playerMP, config.dimID, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
+				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 200, false, false));
+			}
+		}
+	}
 
-    @Override
-    public EnumRarity getRarity(ItemStack stack) {
-	return EnumRarity.EPIC;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if (isInCreativeTab(tab))
+			if (config.enableApple)
+				list.add(new ItemStack(this));
+	}
+
+	@Override
+	public EnumRarity getRarity(ItemStack stack) {
+		return EnumRarity.EPIC;
+	}
 
 }

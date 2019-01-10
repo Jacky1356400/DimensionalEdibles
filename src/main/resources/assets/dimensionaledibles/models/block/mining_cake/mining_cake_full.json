@@ -1,0 +1,9 @@
+{
+	"parent": "block/cake_uneaten",
+	"textures": {
+		"particle": "dimensionaledibles:blocks/mining_cake/mining_cake_2",
+		"bottom": "dimensionaledibles:blocks/mining_cake/mining_cake_0",
+		"top": "dimensionaledibles:blocks/mining_cake/mining_cake_1",
+		"side": "dimensionaledibles:blocks/mining_cake/mining_cake_2"
+	}
+}

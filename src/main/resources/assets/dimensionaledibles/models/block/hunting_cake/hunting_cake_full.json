@@ -1,0 +1,9 @@
+{
+	"parent": "block/cake_uneaten",
+	"textures": {
+        "particle": "dimensionaledibles:blocks/hunting_cake/hunting_cake_2",
+        "bottom": "dimensionaledibles:blocks/hunting_cake/hunting_cake_0",
+        "top": "dimensionaledibles:blocks/hunting_cake/hunting_cake_1",
+        "side": "dimensionaledibles:blocks/hunting_cake/hunting_cake_2"
+    }
+}

@@ -6,17 +6,43 @@ item.dimensionaledibles.ender_apple.name=Ender Apple
 item.dimensionaledibles.nether_apple.name=Nether Apple
 item.dimensionaledibles.overworld_apple.name=Overworld Apple
 item.dimensionaledibles.custom_apple.name=Custom Apple
+item.dimensionaledibles.twilight_apple.name=Twilight Apple
+item.dimensionaledibles.mining_apple.name=Mining Apple
+item.dimensionaledibles.void_apple.name=Void Apple
+item.dimensionaledibles.erebus_apple.name=Erebus Apple
+item.dimensionaledibles.hunting_apple.name=Hunting Apple
+item.dimensionaledibles.lostcities_apple.name=Lost Cities Apple
 
 #Blocks
 tile.dimensionaledibles.end_cake.name=End Cake
 tile.dimensionaledibles.nether_cake.name=Nether Cake
 tile.dimensionaledibles.overworld_cake.name=Overworld Cake
 tile.dimensionaledibles.custom_cake.name=Custom Dimension Cake
+tile.dimensionaledibles.twilight_cake.name=Twilight Cake
+tile.dimensionaledibles.mining_cake.name=Mining Cake
+tile.dimensionaledibles.erebus_cake.name=Erebus Cake
+tile.dimensionaledibles.void_cake.name=Void Cake
+tile.dimensionaledibles.hunting_cake.name=Hunting Cake
+tile.dimensionaledibles.lostcities_cake.name=Lost Cities Cake
 
-#JEI Compat
+#JEI Compat Cake Descriptions
 dimensionaledibles.end_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to The End. The cake has infinite uses as long as it is fueled.
 dimensionaledibles.nether_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Nether. The cake has infinite uses as long as it is fueled.
 dimensionaledibles.overworld_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Overworld. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.twilight_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Twilight Forest. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.mining_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Mining Dimension. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.erebus_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Erebus (Bug) Dimension. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.void_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Void Dimension. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.hunting_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Hunting Dimension. The cake has infinite uses as long as it is fueled.
+dimensionaledibles.lostcities_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to the Lost Cities Dimension. The cake has infinite uses as long as it is fueled.
+
+#JEI Compat Apple Descriptions
 dimensionaledibles.ender_apple.jeidesc=Eat the apple and you'll be teleported to The End. Single-use only.
 dimensionaledibles.nether_apple.jeidesc=Eat the apple and you'll be teleported to the Nether. Single-use only.
 dimensionaledibles.overworld_apple.jeidesc=Eat the apple and you'll be teleported to the Overworld. Single-use only.
+dimensionaledibles.twilight.jeidesc=Eat the apple and you'll be teleported to the Twilight Forest. Single-use only.
+dimensionaledibles.mining.jeidesc=Eat the apple and you'll be teleported to the Mining Dimension. Single-use only.
+dimensionaledibles.erebus.jeidesc=Eat the apple and you'll be teleported to the Erebus (Bug) Dimension. Single-use only.
+dimensionaledibles.void.jeidesc=Eat the apple and you'll be teleported to the Void Dimension. Single-use only.
+dimensionaledibles.hunting.jeidesc=Eat the apple and you'll be teleported to the Hunting Dimension. Single-use only.
+dimensionaledibles.lostcities.jeidesc=Eat the apple and you'll be teleported to the Lost Cities Dimension. Single-use only.
