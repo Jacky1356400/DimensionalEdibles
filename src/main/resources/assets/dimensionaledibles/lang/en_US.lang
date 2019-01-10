@@ -17,6 +17,7 @@ item.dimensionaledibles.lostcities_apple.name=Lost Cities Apple
 tile.dimensionaledibles.end_cake.name=End Cake
 tile.dimensionaledibles.nether_cake.name=Nether Cake
 tile.dimensionaledibles.overworld_cake.name=Overworld Cake
+<<<<<<< HEAD
 tile.dimensionaledibles.custom_cake.name=Custom Dimension Cake
 tile.dimensionaledibles.twilight_cake.name=Twilight Cake
 tile.dimensionaledibles.mining_cake.name=Mining Cake
@@ -24,6 +25,9 @@ tile.dimensionaledibles.erebus_cake.name=Erebus Cake
 tile.dimensionaledibles.void_cake.name=Void Cake
 tile.dimensionaledibles.hunting_cake.name=Hunting Cake
 tile.dimensionaledibles.lostcities_cake.name=Lost Cities Cake
+=======
+tile.dimensionaledibles.custom_cake.name=Custom Cake
+>>>>>>> upstream/dev-1.12.2
 
 #JEI Compat Cake Descriptions
 dimensionaledibles.end_cake.jeidesc=Place the cake down and fill it with %d, then right click on the cake and you'll be teleported to The End. The cake has infinite uses as long as it is fueled.

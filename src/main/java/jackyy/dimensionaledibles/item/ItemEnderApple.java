@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemEnderApple extends ItemFood {
 	public ModConfig.DimensionConfig config = ModConfig.ender;
 
+<<<<<<< HEAD
 	public ItemEnderApple() {
 		super(4, 0.3F, false);
 		setAlwaysEdible();
@@ -58,5 +59,45 @@ public class ItemEnderApple extends ItemFood {
 	public EnumRarity getRarity(ItemStack stack) {
 		return EnumRarity.EPIC;
 	}
+=======
+    public ItemEnderApple() {
+        super(4, 0.3F, false);
+        setAlwaysEdible();
+        setRegistryName(DimensionalEdibles.MODID + ":ender_apple");
+        setTranslationKey(DimensionalEdibles.MODID + ".ender_apple");
+        setCreativeTab(DimensionalEdibles.TAB);
+    }
+
+    @Override
+    public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
+        if (world.provider.getDimension() != 1) {
+            if (!world.isRemote) {
+                EntityPlayerMP playerMP = (EntityPlayerMP) player;
+                BlockPos coords;
+                if (ModConfig.tweaks.enderApple.useCustomCoords) {
+                    coords = new BlockPos(ModConfig.tweaks.enderApple.customCoords.x, ModConfig.tweaks.enderApple.customCoords.y, ModConfig.tweaks.enderApple.customCoords.z);
+                } else {
+                    coords = TeleporterHandler.getDimPos(playerMP, 1, player.getPosition());
+                }
+                TeleporterHandler.updateDimPos(playerMP, world.provider.getDimension(), player.getPosition());
+                TeleporterHandler.teleport(playerMP, 1, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
+                player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 200, false, false));
+            }
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+        if (isInCreativeTab(tab))
+            if (ModConfig.general.enderApple)
+                list.add(new ItemStack(this));
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.EPIC;
+    }
+>>>>>>> upstream/dev-1.12.2
 
 }

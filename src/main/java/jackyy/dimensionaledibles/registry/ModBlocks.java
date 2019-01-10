@@ -11,7 +11,7 @@ import jackyy.dimensionaledibles.block.BlockVoidCake;
 import jackyy.dimensionaledibles.block.BlockHuntingCake;
 import jackyy.dimensionaledibles.block.BlockLostCitiesCake;
 import jackyy.dimensionaledibles.block.BlockOverworldCake;
-import jackyy.dimensionaledibles.block.tileentity.TileEntityCustomCake;
+import jackyy.dimensionaledibles.block.tile.TileDimensionCake;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -35,6 +35,7 @@ public class ModBlocks {
 	public static BlockLostCitiesCake lostcitiesCake = new BlockLostCitiesCake();
 	public static BlockCustomCake customCake = new BlockCustomCake();
 
+<<<<<<< HEAD
 	public static void init(RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(endCake, netherCake, overworldCake, twilightCake, miningCake, erebusCake, voidCake, huntingCake, lostcitiesCake, customCake);
 
@@ -56,5 +57,21 @@ public class ModBlocks {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(customCake), i, new ModelResourceLocation(customCake.getRegistryName(), "inventory"));
 		}
 	}
+=======
+    public static void init(RegistryEvent.Register<Block> event) {
+        event.getRegistry().registerAll(endCake, netherCake, overworldCake, customCake);
+        GameRegistry.registerTileEntity(TileDimensionCake.class, new ResourceLocation(DimensionalEdibles.MODID, "tileChanceCube"));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initModels() {
+        for (int i = 0; i <= 6; i++) {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(endCake), i, new ModelResourceLocation(endCake.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(netherCake), i, new ModelResourceLocation(netherCake.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(overworldCake), i, new ModelResourceLocation(overworldCake.getRegistryName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(customCake), i, new ModelResourceLocation(customCake.getRegistryName(), "inventory"));
+        }
+    }
+>>>>>>> upstream/dev-1.12.2
 
 }

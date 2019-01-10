@@ -1,5 +1,6 @@
 package jackyy.dimensionaledibles.registry;
 
+<<<<<<< HEAD
 import jackyy.dimensionaledibles.block.tileentity.TileEntityCustomCake;
 import jackyy.dimensionaledibles.item.ItemCustomApple;
 import jackyy.dimensionaledibles.item.ItemEnderApple;
@@ -12,17 +13,14 @@ import jackyy.dimensionaledibles.item.ItemHuntingApple;
 import jackyy.dimensionaledibles.item.ItemLostCitiesApple;
 import jackyy.dimensionaledibles.item.ItemOverworldApple;
 import net.minecraft.block.state.IBlockState;
+=======
+import jackyy.dimensionaledibles.item.*;
+>>>>>>> upstream/dev-1.12.2
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModItems {
 
+<<<<<<< HEAD
 	public static ItemEnderApple enderApple = new ItemEnderApple();
 	public static ItemNetherApple netherApple = new ItemNetherApple();
 	public static ItemOverworldApple overworldApple = new ItemOverworldApple();
@@ -165,5 +164,43 @@ public class ModItems {
 		ModelLoader.setCustomModelResourceLocation(lostcitiesApple, 0, new ModelResourceLocation(lostcitiesApple.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(customApple, 0, new ModelResourceLocation(customApple.getRegistryName(), "inventory"));
 	}
+=======
+    public static ItemEnderApple enderApple = new ItemEnderApple();
+    public static ItemNetherApple netherApple = new ItemNetherApple();
+    public static ItemOverworldApple overworldApple = new ItemOverworldApple();
+    public static ItemCustomApple customApple = new ItemCustomApple();
+    public static ItemBlockCustomCake customCake = new ItemBlockCustomCake();
+
+    public static void init(RegistryEvent.Register<Item> event) {
+        event.getRegistry().registerAll(
+                new ItemBlock(ModBlocks.endCake) {
+                    @Override
+                    public EnumRarity getRarity(ItemStack stack) {
+                        return EnumRarity.EPIC;
+                    }
+                }.setRegistryName(ModBlocks.endCake.getRegistryName()),
+                new ItemBlock(ModBlocks.netherCake) {
+                    @Override
+                    public EnumRarity getRarity(ItemStack stack) {
+                        return EnumRarity.EPIC;
+                    }
+                }.setRegistryName(ModBlocks.netherCake.getRegistryName()),
+                new ItemBlock(ModBlocks.overworldCake) {
+                    @Override
+                    public EnumRarity getRarity(ItemStack stack) {
+                        return EnumRarity.EPIC;
+                    }
+                }.setRegistryName(ModBlocks.overworldCake.getRegistryName()),
+                customCake, enderApple, netherApple, overworldApple, customApple);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initModels() {
+        ModelLoader.setCustomModelResourceLocation(enderApple, 0, new ModelResourceLocation(enderApple.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(netherApple, 0, new ModelResourceLocation(netherApple.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(overworldApple, 0, new ModelResourceLocation(overworldApple.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(customApple, 0, new ModelResourceLocation(customApple.getRegistryName(), "inventory"));
+    }
+>>>>>>> upstream/dev-1.12.2
 
 }

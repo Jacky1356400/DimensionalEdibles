@@ -1,7 +1,7 @@
 package jackyy.dimensionaledibles.compat;
 
 import jackyy.dimensionaledibles.block.BlockCakeBase;
-import jackyy.dimensionaledibles.block.tileentity.TileEntityCustomCake;
+import jackyy.dimensionaledibles.block.tile.TileDimensionCake;
 import jackyy.dimensionaledibles.util.IWailaInfoProvider;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -29,6 +29,7 @@ public class WailaCompat implements IWailaDataProvider {
 	private static boolean registered;
 	private static boolean loaded;
 
+<<<<<<< HEAD
 	public static void load(IWailaRegistrar registrar) {
 		if (!registered) {
 			throw new RuntimeException("Please register this handler using the provided method.");
@@ -89,5 +90,67 @@ public class WailaCompat implements IWailaDataProvider {
 		}
 		return tag;
 	}
+=======
+    public static void load(IWailaRegistrar registrar) {
+        if (!registered) {
+            throw new RuntimeException("Please register this handler using the provided method.");
+        }
+        if (!loaded) {
+            registrar.registerStackProvider(INSTANCE, BlockCakeBase.class);
+            registrar.registerHeadProvider(INSTANCE, BlockCakeBase.class);
+            registrar.registerBodyProvider(INSTANCE, BlockCakeBase.class);
+            registrar.registerTailProvider(INSTANCE, BlockCakeBase.class);
+            registrar.registerNBTProvider(INSTANCE, BlockCakeBase.class);
+            loaded = true;
+        }
+    }
+
+    public static void register() {
+        if (registered)
+            return;
+        registered = true;
+        FMLInterModComms.sendMessage("waila", "register", "jackyy.dimensionaledibles.compat.WailaCompat.load");
+    }
+
+    @Nullable
+    @Override
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        ItemStack stack = new ItemStack(accessor.getBlock());
+        stack.setTagCompound(accessor.getNBTData());
+        return stack;
+    }
+
+    @Nonnull
+    @Override
+    public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return currenttip;
+    }
+
+    @Nonnull
+    @Override
+    public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        if (accessor.getBlock() instanceof IWailaInfoProvider) {
+            return ((IWailaInfoProvider) accessor.getBlock()).getWailaBody(itemStack, currenttip, accessor, config);
+        }
+        return currenttip;
+    }
+
+    @Nonnull
+    @Override
+    public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return currenttip;
+    }
+
+    @Nonnull
+    @Override
+    public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
+        if (te instanceof TileDimensionCake) {
+            TileDimensionCake cake = (TileDimensionCake) te;
+            tag.setInteger("dimID", cake.getDimensionID());
+            tag.setString("cakeName", cake.getCakeName());
+        }
+        return tag;
+    }
+>>>>>>> upstream/dev-1.12.2
 
 }
