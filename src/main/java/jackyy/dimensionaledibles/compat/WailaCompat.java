@@ -21,6 +21,7 @@ import java.util.List;
 
 public class WailaCompat implements IWailaDataProvider {
 
+<<<<<<< HEAD
 	public static final WailaCompat INSTANCE = new WailaCompat();
 
 	private WailaCompat() {
@@ -79,6 +80,11 @@ public class WailaCompat implements IWailaDataProvider {
 	public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return currenttip;
 	}
+=======
+    public static final WailaCompat INSTANCE = new WailaCompat();
+    private static boolean registered;
+    private static boolean loaded;
+>>>>>>> upstream/dev-1.12.2
 
 	@Nonnull
 	@Override

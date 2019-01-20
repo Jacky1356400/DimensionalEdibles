@@ -20,6 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.util.Random;
@@ -176,7 +177,7 @@ public class TeleporterHandler {
 	}
 =======
     public static void teleport(EntityPlayerMP player, int dim, double x, double y, double z, PlayerList playerList) {
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, dim))
+        if (!ForgeHooks.onTravelToDimension(player, dim))
             return;
         int oldDim = player.dimension;
         WorldServer worldServer = playerList.getServerInstance().getWorld(player.dimension);
@@ -271,7 +272,11 @@ public class TeleporterHandler {
 
             WorldServer newDimworld = player.server.getPlayerList().getServerInstance().getWorld(dimension);
 
-            position = getValidYSpawnPos(newDimworld, currentPos);
+            if (dimension == 1) {
+                position = newDimworld.getSpawnCoordinate();
+            } else {
+                position = getValidYSpawnPos(newDimworld, currentPos);
+            }
         } else {
             position = new BlockPos(dimPos.getInteger("x"), dimPos.getInteger("y"), dimPos.getInteger("z"));
         }

@@ -1,6 +1,5 @@
 package jackyy.dimensionaledibles.item;
 
-import jackyy.dimensionaledibles.block.BlockCustomCake;
 import jackyy.dimensionaledibles.block.tile.TileDimensionCake;
 import jackyy.dimensionaledibles.registry.ModBlocks;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 public class ItemBlockCustomCake extends ItemBlock {
 
     public ItemBlockCustomCake() {
-        super(new BlockCustomCake());
+        super(ModBlocks.customCake);
         setRegistryName(ModBlocks.customCake.getRegistryName());
     }
 
@@ -49,7 +48,7 @@ public class ItemBlockCustomCake extends ItemBlock {
     public String getCakeName(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
         if (nbt == null || !nbt.hasKey("cakeName")) {
-            return "Custom Cake (Unconfigured)";
+            return "Custom";
         }
         return nbt.getString("cakeName");
     }

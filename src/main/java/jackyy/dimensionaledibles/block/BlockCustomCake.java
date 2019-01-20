@@ -10,12 +10,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
@@ -112,20 +114,48 @@ public class BlockCustomCake extends BlockCakeBase implements ITileEntityProvide
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         int meta = getMetaFromState(world.getBlockState(pos)) - 1;
-        if (player.capabilities.isCreativeMode || meta < 0) {
-            meta = 0;
-        }
+        ItemStack stack = player.getHeldItem(hand);
         int dimension = 0;
         TileEntity ent = world.getTileEntity(pos);
         if (ent != null && ent instanceof TileDimensionCake) {
             dimension = ((TileDimensionCake) ent).getDimensionID();
         }
-        if (world.provider.getDimension() != dimension) {
-            if (!world.isRemote) {
-                teleportPlayer(world, player, dimension);
+        String fuel = "minecraft:air";
+        for (String s : ModConfig.tweaks.customEdible.customCake.fuel) {
+            try {
+                String[] parts = s.split(",");
+                if (parts.length < 2) {
+                    DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid input line! Format needs to be: <dimID>, <cakeFuel>");
+                    continue;
+                }
+                if (Integer.parseInt(parts[0].trim()) == dimension) {
+                    fuel = parts[1].trim();
+                }
+            } catch (NumberFormatException e) {
+                DimensionalEdibles.logger.log(Level.ERROR, s + " is not a valid line input! The dimension ID needs to be a number!");
             }
         }
-        return true;
+        if (!stack.isEmpty() && stack.getItem() == Item.REGISTRY.getObject(new ResourceLocation(fuel))) {
+            if (meta >= 0) {
+                world.setBlockState(pos, state.withProperty(BITES, meta), 2);
+                if (!player.capabilities.isCreativeMode) {
+                    stack.shrink(1);
+                }
+                return true;
+            }
+        } else {
+            if (world.provider.getDimension() != dimension) {
+                if (!world.isRemote) {
+                    if (player.capabilities.isCreativeMode) {
+                        teleportPlayer(world, player, dimension);
+                    } else {
+                        consumeCake(world, pos, player, dimension);
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void teleportPlayer(World world, EntityPlayer player, int dimension) {
@@ -135,9 +165,20 @@ public class BlockCustomCake extends BlockCakeBase implements ITileEntityProvide
         TeleporterHandler.teleport(playerMP, dimension, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
     }
 
+    private void consumeCake(World world, BlockPos pos, EntityPlayer player, int dimension) {
+        if (player.canEat(true)) {
+            int l = world.getBlockState(pos).getValue(BITES);
+            if (l < 6) {
+                player.getFoodStats().addStats(2, 0.1F);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(BITES, l + 1), 3);
+                teleportPlayer(world, player, dimension);
+            }
+        }
+    }
+
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return getStateFromMeta(0);
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return ModConfig.tweaks.customEdible.customCake.preFueled ? getDefaultState().withProperty(BITES, 0) : getDefaultState().withProperty(BITES, 6);
     }
 
     @Override
@@ -174,7 +215,7 @@ public class BlockCustomCake extends BlockCakeBase implements ITileEntityProvide
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileDimensionCake();
     }
 

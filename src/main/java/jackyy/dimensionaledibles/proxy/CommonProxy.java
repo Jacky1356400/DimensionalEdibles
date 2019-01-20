@@ -3,6 +3,7 @@ package jackyy.dimensionaledibles.proxy;
 import jackyy.dimensionaledibles.compat.TOPCompat;
 import jackyy.dimensionaledibles.compat.WailaCompat;
 import jackyy.dimensionaledibles.registry.ModBlocks;
+import jackyy.dimensionaledibles.registry.ModEvents;
 import jackyy.dimensionaledibles.registry.ModItems;
 import jackyy.dimensionaledibles.registry.ModRecipes;
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CommonProxy {
 
+<<<<<<< HEAD
 	public void preInit(FMLPreInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(this);
 		if (Loader.isModLoaded("theoneprobe")) {
@@ -48,5 +50,38 @@ public class CommonProxy {
 
 	public void postInit(FMLPostInitializationEvent event) {
 	}
+=======
+    public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(this);
+        if (Loader.isModLoaded("theoneprobe")) {
+            TOPCompat.register();
+        }
+        if (Loader.isModLoaded("waila")) {
+            WailaCompat.register();
+        }
+        MinecraftForge.EVENT_BUS.register(new ModEvents());
+    }
+
+    @SubscribeEvent
+    public void onItemRegistry(RegistryEvent.Register<Item> event) {
+        ModItems.init(event);
+    }
+
+    @SubscribeEvent
+    public void onBlockRegistry(RegistryEvent.Register<Block> event) {
+        ModBlocks.init(event);
+    }
+
+    @SubscribeEvent
+    public void onRecipeRegistry(RegistryEvent.Register<IRecipe> event) {
+        ModRecipes.init(event);
+    }
+
+    public void init(FMLInitializationEvent event) {
+    }
+
+    public void postInit(FMLPostInitializationEvent event) {
+    }
+>>>>>>> upstream/dev-1.12.2
 
 }
