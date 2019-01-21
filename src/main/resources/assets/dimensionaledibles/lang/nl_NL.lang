@@ -5,7 +5,7 @@ itemGroup.dimensionaledibles=Dimensional Edibles
 item.dimensionaledibles.ender_apple.name=Ender Appel
 item.dimensionaledibles.nether_apple.name=Nether Appel
 item.dimensionaledibles.overworld_apple.name=Overworld Appel
-<<<<<<< HEAD
+item.dimensionaledibles.custom_apple.name=Custom Appel
 item.dimensionaledibles.custom_apple.name=Custom Apple
 item.dimensionaledibles.twilight_apple.name=Twilight Apple
 item.dimensionaledibles.mining_apple.name=Mining Apple
@@ -13,16 +13,12 @@ item.dimensionaledibles.void_apple.name=Void Apple
 item.dimensionaledibles.erebus_apple.name=Erebus Apple
 item.dimensionaledibles.hunting_apple.name=Hunting Apple
 item.dimensionaledibles.lostcities_apple.name=Lost Cities Apple
-=======
-item.dimensionaledibles.custom_apple.name=Custom Appel
->>>>>>> upstream/dev-1.12.2
 
 #Blocks
 tile.dimensionaledibles.end_cake.name=Ender Cake
 tile.dimensionaledibles.nether_cake.name=Nether Cake
 tile.dimensionaledibles.overworld_cake.name=Overworld Cake
-<<<<<<< HEAD
-tile.dimensionaledibles.custom_cake.name=Custom Dimension Cake
+tile.dimensionaledibles.custom_cake.name=Custom Cake
 tile.dimensionaledibles.twilight_cake.name=Twilight Cake
 tile.dimensionaledibles.mining_cake.name=Mining Cake
 tile.dimensionaledibles.erebus_cake.name=Erebus Cake
@@ -51,14 +47,4 @@ dimensionaledibles.erebus_apple.jeidesc=Eet de appel en je wordt geteleporteerd 
 dimensionaledibles.void_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Void. Eenmalig gebruik.
 dimensionaledibles.hunting_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Hunting. Eenmalig gebruik.
 dimensionaledibles.lostcities_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Lost Cities. Eenmalig gebruik.
-=======
-tile.dimensionaledibles.custom_cake.name=Custom Cake
 
-#JEI Compat
-dimensionaledibles.end_cake.jeidesc=Plaats de cake en vul hem met %d, klik met de rechtermuisknop op de cake en je wordt geteleporteerd naar de Ender. De cake heeft oneindig veel toepassingen zolang deze maar is gevuld.
-dimensionaledibles.nether_cake.jeidesc=Plaats de cake naar beneden en vul deze met %d, klik met de rechtermuisknop op de cake en je wordt geteleporteerd naar de Nether. De cake heeft oneindig veel toepassingen zolang deze maar is gevuld.
-dimensionaledibles.overworld_cake.jeidesc=Plaats de cake en vul deze met %d, klik met de rechtermuisknop op de taart en je wordt geteleporteerd naar de Overworld. De cake heeft oneindig veel toepassingen zolang deze maar is gevuld.
-dimensionaledibles.ender_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Ender. Eenmalig gebruik.
-dimensionaledibles.nether_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Nether. Eenmalig gebruik.
-dimensionaledibles.overworld_apple.jeidesc=Eet de appel en je wordt geteleporteerd naar de Overworld. Eenmalig gebruik.
->>>>>>> upstream/dev-1.12.2

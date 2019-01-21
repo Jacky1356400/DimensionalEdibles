@@ -19,38 +19,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CommonProxy {
 
-<<<<<<< HEAD
-	public void preInit(FMLPreInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(this);
-		if (Loader.isModLoaded("theoneprobe")) {
-			TOPCompat.register();
-		}
-		if (Loader.isModLoaded("waila")) {
-			WailaCompat.register();
-		}
-	}
-
-	@SubscribeEvent
-	public void onItemRegistry(RegistryEvent.Register<Item> event) {
-		ModItems.init(event);
-	}
-
-	@SubscribeEvent
-	public void onBlockRegistry(RegistryEvent.Register<Block> event) {
-		ModBlocks.init(event);
-	}
-
-	@SubscribeEvent
-	public void onRecipeRegistry(RegistryEvent.Register<IRecipe> event) {
-		ModRecipes.init(event);
-	}
-
-	public void init(FMLInitializationEvent event) {
-	}
-
-	public void postInit(FMLPostInitializationEvent event) {
-	}
-=======
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         if (Loader.isModLoaded("theoneprobe")) {
@@ -82,6 +50,5 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) {
     }
->>>>>>> upstream/dev-1.12.2
 
 }

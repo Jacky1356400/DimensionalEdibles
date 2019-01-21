@@ -18,69 +18,30 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemOverworldApple extends ItemFood {
-	public ModConfig.DimensionConfig config = ModConfig.overworld;
+    public ModConfig.DimensionConfig config = ModConfig.overworld;
+    public String appleName = "overworld";
 
-<<<<<<< HEAD
-	public ItemOverworldApple() {
-		super(4, 0.3F, false);
-		setAlwaysEdible();
-		setRegistryName(DimensionalEdibles.MODID + ":overworld_apple");
-		setTranslationKey(DimensionalEdibles.MODID + ".overworld_apple");
-		setCreativeTab(DimensionalEdibles.TAB);
-	}
-
-	@Override
-	public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-		if (world.provider.getDimension() != config.dimID) {
-			if (!world.isRemote) {
-				EntityPlayerMP playerMP = (EntityPlayerMP) player;
-				BlockPos coords;
-				if (config.useCustomCoords) {
-					coords = new BlockPos(config.customCoords.x, config.customCoords.y, config.customCoords.z);
-				} else {
-					coords = TeleporterHandler.getDimensionPosition(playerMP, config.dimID, player.getPosition());
-				}
-				TeleporterHandler.updateDimensionPosition(playerMP, world.provider.getDimension(), player.getPosition());
-				TeleporterHandler.teleport(playerMP, config.dimID, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
-				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 200, false, false));
-			}
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-		if (isInCreativeTab(tab))
-			if (config.enableApple)
-				list.add(new ItemStack(this));
-	}
-
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return EnumRarity.EPIC;
-	}
-=======
     public ItemOverworldApple() {
         super(4, 0.3F, false);
         setAlwaysEdible();
-        setRegistryName(DimensionalEdibles.MODID + ":overworld_apple");
-        setTranslationKey(DimensionalEdibles.MODID + ".overworld_apple");
+        setRegistryName(DimensionalEdibles.MODID + ":" + appleName + "_apple");
+        setTranslationKey(DimensionalEdibles.MODID + "." + appleName + "_apple");
         setCreativeTab(DimensionalEdibles.TAB);
     }
 
     @Override
     public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-        if (world.provider.getDimension() != 0) {
+        if (world.provider.getDimension() != config.dimID) {
             if (!world.isRemote) {
                 EntityPlayerMP playerMP = (EntityPlayerMP) player;
                 BlockPos coords;
-                if (ModConfig.tweaks.overworldApple.useCustomCoords) {
-                    coords = new BlockPos(ModConfig.tweaks.overworldApple.customCoords.x, ModConfig.tweaks.overworldApple.customCoords.y, ModConfig.tweaks.overworldApple.customCoords.z);
+                if (config.useCustomCoords) {
+                    coords = new BlockPos(config.customCoords.x, config.customCoords.y, config.customCoords.z);
                 } else {
-                    coords = TeleporterHandler.getDimPos(playerMP, 0, player.getPosition());
+                    coords = TeleporterHandler.getDimPos(playerMP, config.dimID, player.getPosition());
                 }
                 TeleporterHandler.updateDimPos(playerMP, world.provider.getDimension(), player.getPosition());
-                TeleporterHandler.teleport(playerMP, 0, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
+                TeleporterHandler.teleport(playerMP, config.dimID, coords.getX(), coords.getY(), coords.getZ(), playerMP.server.getPlayerList());
                 player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 200, 200, false, false));
             }
         }
@@ -90,7 +51,7 @@ public class ItemOverworldApple extends ItemFood {
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         if (isInCreativeTab(tab))
-            if (ModConfig.general.overworldApple)
+            if (config.enableApple)
                 list.add(new ItemStack(this));
     }
 
@@ -98,6 +59,5 @@ public class ItemOverworldApple extends ItemFood {
     public EnumRarity getRarity(ItemStack stack) {
         return EnumRarity.EPIC;
     }
->>>>>>> upstream/dev-1.12.2
 
 }
